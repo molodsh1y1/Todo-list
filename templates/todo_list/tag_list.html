@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if tag_list %}
+	<table class="table">
+		<tr>
+			<th>Name</th>
+			<th>Update</th>
+			<th>Delete</th>
+		</tr>
+
+		<tr>
+		{% for tag in tag_list %}
+			<td>{{ tag.name }}</td>
+			<td><a href="{% url 'todo:tag-update' pk=tag.id %}" class="btn btn-secondary">Update</a></td>
+			<td><a href="{% url 'todo:tag-delete' pk=tag.id %}" class="btn btn-secondary">Delete</a></td>
+		{% endfor %}
+	</table>
+	{% else %}
+		<p class="text-center"> They're no tags in task</p>
+	{% endif %}
+{% endblock %}
